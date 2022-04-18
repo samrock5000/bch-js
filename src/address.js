@@ -717,6 +717,8 @@ class Address {
     switch (decoded.prefix) {
       case 'bitcoincash':
         return 'mainnet'
+      case 'ecash':
+        return 'mainnet'
       case 'bchtest':
         return 'testnet'
       case 'bchreg':
