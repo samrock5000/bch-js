@@ -11,7 +11,7 @@ class Address {
 
     this.restURL = tmp.restURL
     this.apiToken = tmp.apiToken
-    this.authToken = config.authToken
+    // this.authToken = config.authToken
 
     if (this.authToken) {
       // Add Basic Authentication token to the authorization header.
@@ -715,9 +715,9 @@ class Address {
     const decoded = this._decode(address)
 
     switch (decoded.prefix) {
-      case 'bitcoincash':
-        return 'mainnet'
       case 'ecash':
+        return 'mainnet'
+      case 'bitcoincash':
         return 'mainnet'
       case 'bchtest':
         return 'testnet'

@@ -2,6 +2,9 @@ const Bitcoin = require('@psf/bitcoincashjs-lib')
 const coininfo = require('@psf/coininfo')
 const bip66 = require('bip66')
 const bip68 = require('bc-bip68')
+const bchAddr = require('./address')
+const bchjsAddr = new bchAddr()
+const log = console.log
 
 class TransactionBuilder {
   static setAddress (address) {
@@ -46,7 +49,7 @@ class TransactionBuilder {
    * // add input with txid and index of vout
    * transactionBuilder.addInput(txid, 0);
    */
-  addInput (txHash, vout, sequence = this.DEFAULT_SEQUENCE, prevOutScript) {
+  addInput (txHash, vout, sequence = this.SIGHASH_ALL, prevOutScript) {
     this.transaction.addInput(txHash, vout, sequence, prevOutScript)
   }
 
@@ -80,8 +83,9 @@ class TransactionBuilder {
    */
   addOutput (scriptPubKey, amount) {
     try {
+      const ecashtoCashPubKey = bchjsAddr.ecashtoCashAddress(scriptPubKey)
       this.transaction.addOutput(
-        TransactionBuilder._address.toLegacyAddress(scriptPubKey),
+        TransactionBuilder._address.toLegacyAddress(ecashtoCashPubKey),
         amount
       )
     } catch (error) {
