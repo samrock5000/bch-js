@@ -7,7 +7,8 @@
 */
 
 // bch-api mainnet.
-const DEFAULT_REST_API = 'https://api.fullstack.cash/v5/'
+// const DEFAULT_REST_API = 'https://api.fullstack.cash/v5/'
+const DEFAULT_REST_API = 'https://rest.kingbch.com/v4/'
 // const DEFAULT_REST_API = "http://localhost:3000/v5/"
 
 // local deps
